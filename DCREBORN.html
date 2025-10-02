@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DC Reborn</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome για Social Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0f1a;
+      --accent: #ffffff;
+      --accent2: #6f00ff;
+      --glass: rgba(255,255,255,0.07);
+      --text: #e9f1f5;
+      --muted: #a0acb8;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      background: #0a0f1a;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Background particles canvas */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      background: radial-gradient(circle at top left, #0a1e2a, #0a0f1a 60%);
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(10,15,26,0.8);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    header .logo img {height: 60px;}
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      transition: color .3s;
+    }
+    nav a:hover {color: var(--accent2); text-shadow: 0 0 12px var(--accent2);}
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 40px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-left {flex: 1;}
+    .hero-left h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 70px;
+      margin: 0 0 20px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(111,0,255,0.5);
+    }
+    .hero-left p {
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    .cta {
+      margin-top: 35px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 16px 30px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all .35s;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000;
+      box-shadow: 0 0 25px rgba(111,0,255,0.5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 35px rgba(111,0,255,0.8);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+
+    /* Features */
+    .features {
+      text-align: center;
+      padding: 100px 40px;
+    }
+    .features h2 {
+      font-family: "Orbitron";
+      font-size: 44px;
+      margin-bottom: 50px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 40px;
+    }
+    .card {
+      background: var(--glass);
+      padding: 35px;
+      border-radius: 18px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: all .4s;
+    }
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 0 25px rgba(111,0,255,0.4);
+    }
+    .card h3 {margin: 0 0 15px;}
+    .card p {color: var(--muted);}
+
+    /* Team */
+    .team {
+      text-align: center;
+      padding: 100px 40px;
+    }
+    .team h2 {
+      font-family: "Orbitron";
+      font-size: 42px;
+      margin-bottom: 50px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 40px;
+    }
+    .member {
+      background: var(--glass);
+      border-radius: 16px;
+      padding: 25px;
+      backdrop-filter: blur(12px);
+      transition: all .4s;
+    }
+    .member:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 25px rgba(111,0,255,0.5);
+    }
+    .member img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 18px;
+    }
+    .member h4 {margin: 8px 0;}
+    .member small {color: var(--muted);}
+
+    /* Footer */
+    footer {
+      background: rgba(10,15,26,0.9);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 50px 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+    .social-icons a {
+      color: var(--accent);
+      font-size: 30px;
+      transition: all 0.35s;
+    }
+    .social-icons a:hover {
+      color: var(--accent2);
+      transform: scale(1.3) rotate(8deg);
+      text-shadow: 0 0 20px var(--accent2);
+    }
+    footer p {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Particles -->
+  <div id="particles-js"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo"><img src="images/logo.png" alt="DC Reborn"></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#team">Team</a>
+      <a href="https://discord.gg/VavSE5v5" target="_blank">Discord</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left" data-aos="fade-right">
+      <h1>DC Reborn</h1>
+      <p>Η απόλυτη εμπειρία RolePlay στο GTA V. Με μοναδικά scripts, υψηλή απόδοση και προστασία, η κοινότητα μας σας περιμένει!</p>
+      <div class="cta">
+        <a href="https://discord.gg/VavSE5v5" target="_blank" class="btn btn-primary">Join Now Discord</a>
+        <a href="fivem://connect/IP_SERVER_SOU" class="btn btn-outline">▶ Connect & Play RP</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <h2 data-aos="fade-up">Server Features</h2>
+    <div class="feature-grid">
+      <div class="card" data-aos="fade-right">
+        <h3>Advanced Anticheat</h3>
+        <p>Σύστημα anticheat τελευταίας γενιάς με screenshare tools για μέγιστη ασφάλεια.</p>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <h3>Unique Scripts</h3>
+        <p>Custom scripts που δημιουργούν ρεαλιστικό και διασκεδαστικό RP περιβάλλον.</p>
+      </div>
+      <div class="card" data-aos="fade-left">
+        <h3>Optimized FPS</h3>
+        <p>Βελτιστοποίηση σε κάθε σενάριο για κορυφαία απόδοση χωρίς lag.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="team">
+    <h2 data-aos="fade-up">DC Reborn Team</h2>
+    <div class="team-grid">
+      <div class="member" data-aos="fade-right">
+        <img src="images/team1.png" alt="">
+        <h4>DOBAROS</h4>
+        <small>Owner</small>
+      </div>
+      <div class="member" data-aos="fade-up">
+        <img src="images/team2.png" alt="">
+        <h4>GIVI</h4>
+        <small>Management</small>
+      </div>
+      <div class="member" data-aos="fade-left">
+        <img src="images/team4.png" alt="">
+        <h4>Diablo</h4>
+        <small>Designer</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer με social icons -->
+  <footer>
+    <div class="social-icons" data-aos="zoom-in">
+      <a href="https://discord.gg/VavSE5v5" target="_blank"><i class="fa-brands fa-discord"></i></a>
+      <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+    <p>© 2025 DC Reborn | All Rights Reserved</p>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+      once: true
+    });
+  </script>
+
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {"value": 80},
+        "color": {"value": "#6f00ff"},
+        "shape": {"type": "circle"},
+        "opacity": {"value": 0.5},
+        "size": {"value": 3},
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {"enable": true, "speed": 2}
+      }
+    });
+  </script>
+
+</body>
+</html>
