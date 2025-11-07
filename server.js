@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(".")); // σερβίρει το index.html
 
-const WEBHOOK = "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"; // 🔴 Βάλε το δικό σου
+const WEBHOOK = "https://discord.com/api/webhooks/1428935654938640475/QbZda1PsS0k0frHkjytq9WPFgzhth76PIPR36sYkywylv7M9VE7yHmdcpxZj9W2XtkB8"; // 🔴 Βάλε το δικό σου
 
 app.post("/send", async (req, res) => {
   const { name, msg } = req.body;
